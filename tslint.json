@@ -1,0 +1,7 @@
+{
+  "extends": "tslint-config-standard",
+  "rules": {
+    "no-empty": false,
+    "member-ordering": false
+  }
+}

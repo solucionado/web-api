@@ -1,0 +1,45 @@
+{
+  "ava": {
+    "concurrency": 5,
+    "failWithoutAssertions": false
+  },
+  "name": "solucionado-web-api-service",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -w src/ -e ts --exec \"ts-node src/index.ts\"",
+    "test": "npm run build --silent && ava dist/test/**/*.test.js",
+    "test-watch": "nodemon -e js,ts --watch test/ --watch src/ --exec \"npm run test\"",
+    "test-unit": "npm run pretest && npm run build --silent && ava dist/test/unit/**/*.test.js",
+    "test-integration": "npm run pretest && npm run build --silent && ava dist/test/integration/**/*.js",
+    "pretest": "node ./bin/prepare-test-db.js && [ -e dist ] && rm -rf dist || true",
+    "postinstall": "sh ./scripts/postinstall.sh",
+    "lint": "tslint --project ./tsconfig.json",
+    "build": "[ -e dist ] && rm -rf dist; tsc"
+  },
+  "author": "Joan Gabriel Peralta Santana <joanperalta13@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.1.2",
+    "ava": "^0.25.0",
+    "ava-http": "^1.0.0",
+    "mongodb-memory-server": "^1.7.4",
+    "nodemon": "^1.17.3",
+    "redis-mock": "^0.27.0",
+    "ts-node": "^6.0.5",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.3"
+  },
+  "private": true,
+  "dependencies": {
+    "debug": "^3.1.0",
+    "koa": "^2.5.1",
+    "koa-body": "^2.6.0",
+    "koa-router": "^7.4.0",
+    "mongodb": "~3.0.8",
+    "redis": "^2.8.0",
+    "uuid": "^3.2.1"
+  }
+}
